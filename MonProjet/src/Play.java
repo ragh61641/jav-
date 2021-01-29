@@ -16,6 +16,10 @@ public class Play {
 		Play.Tour = Tour;
 	}
 	
+	public void changeTour() {
+		Play.Tour = (Play.Tour == 0) ? 1 : 0;// soit mr jack=1 soit detective =0
+	}
+
 	
 
 }
