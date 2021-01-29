@@ -11,8 +11,7 @@ import java.util.Set;
 public class Plateau {
 
     
-	///private static final PersonnageDetective[] personnageDetectives = null;/// no idea
-	//private List<District> district;
+
 	public District[][] district=new District[3][3] ; //plateau compose dune matrice des quartiers (district) 
 	
     public Plateau(District[][] district) {
@@ -29,41 +28,45 @@ public class Plateau {
  
     
     
-	public List<Detective> Detective = new ArrayList<Detective>() ;//detectives 
-	public ArrayList<CarteAlibi> CarteAlibi;// pour liste des cartes alibi
-    public ArrayList<PersonnagePlateau> Personnage;//pour liste des persoPl 
+	public List<Detective> detective = new ArrayList<Detective>() ;//detectives 
+	public ArrayList<CarteAlibi> carteAlibi;// pour liste des cartes alibi
+	public ArrayList<PersonnagePlateau> personnage;//pour liste des persoPl 
     public MrJack mrJack;
     
 	
-	public int flag; ///  ??
-	private int mNbCase0;// ??
-	private int mTour; // 0 correspond au tour des detective et 1 au tour du mechant
+	public int temporary ; ///  ??
+	//private int mNbCase0;// ??
+	
 	public Plateau() {
-		Random rand = new Random();
-		this.mTour = 0;
-		this.mNbCase0 = 9;
+		Random rand = new Random();// est ce qu on va l utiliser >?
+		
+		//this.mNbCase0 = 9;// why?
 		
 
-		flag = -1;
+		temporary =-1;// case provisoire utiliser pour le jeton echange /rotation
 		
-		Detective holmes = new Detective("Holmes",null,0 );
+		Detective holmes = new Detective("Holmes",null,0 ); // 
 		Detective toby = new Detective("Toby le chien",null,4);
-		Detective Watson = new Detective("Watson",null,8);
+		Detective watson = new Detective("Watson",null,8);
 
+		//liste des detectives
+		detective.add(0,holmes);
+		detective.add(1,toby);
+		detective.add(2,watson);
 		//initialisation des cartes alibi 
-		CarteAlibi.add(new CarteAlibi(2,new PersonnagePlateau("rose")));
-		CarteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Blanc")));
-		CarteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Orange")));
-		CarteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Violet")));
-		CarteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("vert")));
-		CarteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Jaune")));
-		CarteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Gris")));
-		CarteAlibi.add(new CarteAlibi(0,new PersonnagePlateau("Noir")));
-		CarteAlibi.add(new CarteAlibi(0,new PersonnagePlateau("Bleu")));
+		carteAlibi.add(new CarteAlibi(2,new PersonnagePlateau("rose")));
+		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Blanc")));
+		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Orange")));
+		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Violet")));
+		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("vert")));
+		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Jaune")));
+		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Gris")));
+		carteAlibi.add(new CarteAlibi(0,new PersonnagePlateau("Noir")));
+		carteAlibi.add(new CarteAlibi(0,new PersonnagePlateau("Bleu")));
 
-		Collections.shuffle(CarteAlibi);
+		Collections.shuffle(carteAlibi);
 		
-		List<PersonnagePlateau> personnagePlateau = new ArrayList<>();/// list des personnages su le plateay
+		List<PersonnagePlateau> personnagePlateau = new ArrayList<>();/// list des personnages su le plateau
 		
 		personnagePlateau.add(new PersonnagePlateau("rose"));
 		personnagePlateau.add(new PersonnagePlateau("Blanc"));
@@ -90,5 +93,7 @@ public class Plateau {
 
 
 	
-} 
+}
+	
+}	
 
