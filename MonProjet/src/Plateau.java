@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import mrjack.Mechant;
+
 
 
 
@@ -35,34 +37,37 @@ public class Plateau {
     
 	
 	public int temporary ; ///  ??
-	//private int mNbCase0;// ??
 	
+	private int nbreCase0;
+	private int nbreTour; // 0 correspond au tour des detective et 1 au tour du mechant
+
 	public Plateau() {
 		Random rand = new Random();// est ce qu on va l utiliser >?
 		
 		//this.mNbCase0 = 9;// why?
-		
+		this.nbreTour = 0;
+		this.setNbreCase0(9);
 
 		temporary =-1;// case provisoire utiliser pour le jeton echange /rotation
 		
-		Detective holmes = new Detective("Holmes",null,0 ); // 
-		Detective toby = new Detective("Toby le chien",null,4);
-		Detective watson = new Detective("Watson",null,8);
+		Detective holmes = new Detective("Holmes",0 ); // 
+		Detective toby = new Detective("Toby le chien",4);
+		Detective watson = new Detective("Watson",8);
 
 		//liste des detectives
 		detective.add(0,holmes);
 		detective.add(1,toby);
 		detective.add(2,watson);
 		//initialisation des cartes alibi 
-		carteAlibi.add(new CarteAlibi(2,new PersonnagePlateau("rose")));
-		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Blanc")));
-		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Orange")));
-		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Violet")));
-		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("vert")));
-		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Jaune")));
-		carteAlibi.add(new CarteAlibi(1,new PersonnagePlateau("Gris")));
-		carteAlibi.add(new CarteAlibi(0,new PersonnagePlateau("Noir")));
-		carteAlibi.add(new CarteAlibi(0,new PersonnagePlateau("Bleu")));
+		carteAlibi.add(new CarteAlibi(2,0,new PersonnagePlateau("rose")));
+		carteAlibi.add(new CarteAlibi(1,0,new PersonnagePlateau("Blanc")));
+		carteAlibi.add(new CarteAlibi(1,0,new PersonnagePlateau("Orange")));
+		carteAlibi.add(new CarteAlibi(1,0,new PersonnagePlateau("Violet")));
+		carteAlibi.add(new CarteAlibi(1,0,new PersonnagePlateau("vert")));
+		carteAlibi.add(new CarteAlibi(1,0,new PersonnagePlateau("Jaune")));
+		carteAlibi.add(new CarteAlibi(1,0,new PersonnagePlateau("Gris")));
+		carteAlibi.add(new CarteAlibi(0,0,new PersonnagePlateau("Noir")));
+		carteAlibi.add(new CarteAlibi(0,0,new PersonnagePlateau("Bleu")));
 
 		Collections.shuffle(carteAlibi);
 		
@@ -90,10 +95,39 @@ public class Plateau {
 		district[2][0] = new District((int)(Math.random() * 4) -1, 0,personnagePlateau.get(6) );
 		district[2][1] = new District(2,0,personnagePlateau.get(7));
 		district[2][2] = new District((int)(Math.random() * 4) -1, 0,personnagePlateau.get(8));
+		
+		
 
+		mrJack = new MrJack(carteAlibi.get(0).getPersonnage().getNom(),null,carteAlibi.get(0).getNbSablier(),jackInPlateau());
+		carteAlibi.remove(0);
+			}
+		
+		
+		
+		
 
+	
+	public void changeTour() {
+		this.nbreTour = (this.nbreTour == 0) ? 1 : 0;// soit mr jack=1 soit detective =0
 	
 }
-	
-}	
+	public  PersonnagePlateau jackInPlateau( ) {
+		for (int i = 0 ; i < 3 ; i++) {
+			for (int j = 0 ; j < 3 ; j++) {
+				if (district[i][j].getPerso() == carteAlibi.get(0).getPersonnage()) {
+					
+					return district[i][j].getPerso();}
+				}
+		}
+		return null;
+	}
+
+	public int getNbreCase0() {
+		return nbreCase0;
+	}
+
+	public void setNbreCase0(int nbreCase0) {
+		this.nbreCase0 = nbreCase0;
+	}
+}
 
