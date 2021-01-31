@@ -1,14 +1,6 @@
-public class PersonnagePlateau {
-    
-    private int position;//  
-    private boolean visible; // sa visibilte par rapport aux 3 detectives 
     private String Nom;
-    public PersonnagePlateau(int position, boolean visible,String Nom) {
-        this.position = position;
-        this.visible = visible;
-        this.Nom=Nom;
+
     
-    }
     public PersonnagePlateau(String Nom) {
    
         this.Nom=Nom;
@@ -24,13 +16,7 @@ public class PersonnagePlateau {
         this.position = position;
         }
 
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
+    
 
 	public String getNom() {
 		return Nom;
@@ -41,7 +27,7 @@ public class PersonnagePlateau {
 	}
    
     public void displayPersonnagePlateau() {
-		System.out.println(this.Nom + " et " + this.visible +"et"+this.position);
+		System.out.println(this.Nom + " et " +this.position);
 	}
     
 }
