@@ -4,7 +4,7 @@ public class MrJack extends Player {
     private PersonnagePlateau personnagePlateau;/// carte alibi pour chercher son identite?
     
     public MrJack(String name, String role, int nbSabliers, PersonnagePlateau personnagePlateau) {
-        super(name,role);
+        super(name);
         this.nbSabliers = 0;
         this.personnagePlateau = personnagePlateau;
     }
@@ -24,4 +24,11 @@ public class MrJack extends Player {
     public void setPersonnagePlateau(PersonnagePlateau personnagePlateau) {
         this.personnagePlateau = personnagePlateau;
     }
+    public void displayIdentiteMrJack() {
+		System.out.println( this.personnagePlateau .getNom() + " et " + nbSabliers);
+	}
+
+   
+	
+	
 }
