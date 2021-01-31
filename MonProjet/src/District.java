@@ -36,5 +36,5 @@ public class District{//quartiers {
 		this.Perso=Perso;
 		
 	}
-	///mettre une methode pour lire le quartier , nom et quel face ainsi son orientation 
+	
 }
