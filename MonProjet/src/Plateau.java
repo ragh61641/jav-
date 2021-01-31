@@ -31,7 +31,7 @@ public class Plateau {
     
     
 	public List<Detective> detective = new ArrayList<Detective>() ;//detectives 
-	public ArrayList<CarteAlibi> carteAlibi;// pour liste des cartes alibi
+	public ArrayList<CarteAlibi> carteAlibi=new ArrayList<CarteAlibi>();// pour liste des cartes alibi
 	public ArrayList<PersonnagePlateau> personnage;//pour liste des persoPl 
     public MrJack mrJack;
     
