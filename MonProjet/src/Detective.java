@@ -5,8 +5,8 @@ public class Detective extends Player {
     private int position;
 
 
-	public Detective(String name, String role,int position) {
-		super(name, role);
+	public Detective(String name,int position) {
+		super(name);
 		this.position=position;
 		
 	}
