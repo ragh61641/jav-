@@ -48,7 +48,8 @@ public class Jeton {
     
     
     private Scanner scanner = new Scanner(System.in);
-
+   
+    	
     public void actionjeton(Plateau plateau){
 
     	
@@ -61,7 +62,7 @@ public class Jeton {
     		while (nb != 1 && nb != 2) {  ///pour verifier et etre sur que le joueur a print le 1 ou2 
     			System.out.println("Veuillez retaper 1 ou 2 :");}
     		
-    		nb=scanner.nextInt();//????? est ce aue ca permet que tout detective fera la meme chose si il est dans ce ca
+    		nb=scanner.nextInt();
     		if (plateau.detective.get(0).getPosition() == 10 && nb == 2)//cas exception ou on doit faire bouger le jeton de deux places donc cest sa position intiale  
     			plateau.detective.get(0).setPosition(0);
     		else if (plateau.detective.get(0).getPosition() == 11)//cas ou il faut bouger soit deux soit un, si 2 ca devient 2-1 donc position(1), si 1 donc position(0)
@@ -77,41 +78,44 @@ public class Jeton {
     	
     	
     	if(this.face=="Alibi") {//si on joue le jeton Alibi
-    		if (Play.getTour()%2 != 0) { // tour du detective est impair 
-    			System.out.print("identite dans la carte alibi piochee : ");//dessous va permettre de lire l'identite a innocente/ou non, parmi celle figurant sur le plateau
-    			plateau.carteAlibi.get(0).identiteDuPersonnage();//il reste que 8 carte alibi , vu que mr jack a deja son identite qui represente la 9 eme carte ,
-    			
-    			int i2 = 0; // initialisation pour parcourir le plateau et chercher le quartier correspondant a la carte alibi picohe par le detective 
-            	int j2 = 0;
+    		for (int nbTour = 1 ; nbTour <= 8 ; nbTour++) {
+    			if (nbTour%2 == 1) { // tour du detective est impair 
+    				System.out.print("identite dans la carte alibi piochee : ");//dessous va permettre de lire l'identite a innocente/ou non, parmi celle figurant sur le plateau
+    				plateau.carteAlibi.get(0).identiteDuPersonnage();//il reste que 8 carte alibi , vu que mr jack a deja son identite qui represente la 9 eme carte ,
 
-            	for (int i = 0 ; i < 3 ; i++) {
-                    	for (int j = 0 ; j < 3 ; j++) {
+    				int i2 = 0; // initialisation pour parcourir le plateau et chercher le quartier correspondant a la carte alibi picohe par le detective 
+    				int j2 = 0;
+    				for (int i = 0 ; i < 3 ; i++) {
+    					for (int j = 0 ; j < 3 ; j++) {
+    				
                             	if (plateau.district[i][j].getPerso() == plateau.carteAlibi.get(0).getPersonnage()) {//cherche perso alibi sur le plateau //??? 
                                     	i2 = i;
                                     	j2 = j;
                             	}
                     	}
             	}
-            	if ( plateau.district[i2][j2].getPileFace() == 0) {// si on est a l'etat de base, on retoure le quartier 
-            		plateau.district[i2][j2].setPileFace(1); // sur sa face 
-            	}
-            	if (plateau.district[i2][j2].getPerso().getNom() == "Gris") {//si le personnage gris represente la carte alibi pioche , 
-            		plateau.district[i2][j2].setPileFace(-1);//positioner le gris en -1 car y a une excpetion il n a aucun mur pour lorsqu'on retourne le quartier
-            		plateau.district[i2][j2].setOrientation(-1); // donc  son orientation est aussi -1 qui represente pas de mur
-			}
-			//pourquoi enlever la case de la carte du plateau 
-            //	plateau.setNbCase0(plateau.getNbCase0() - 1);
-            	plateau.carteAlibi.remove(0); // enlever la carte alibi deja pioche par le detective, car ce personnage ne fait plus parti des suspects 
-            	}
-	}
-    	 else {/// tour de Mr jack , on peut aussi l'exprimer avec if (Play.getTour()%2 == 0)
+    				if ( plateau.district[i2][j2].getPileFace() == 0) {// si on est a l'etat de base, on retoure le quartier 
+    					plateau.district[i2][j2].setPileFace(1); // sur sa face 
+    				}
+    				if (plateau.district[i2][j2].getPerso().getNom() == "Gris") {//si le personnage gris represente la carte alibi pioche , 
+    					plateau.district[i2][j2].setPileFace(-1);//positioner le gris en -1 car y a une excpetion il n a aucun mur pour lorsqu'on retourne le quartier
+    					plateau.district[i2][j2].setOrientation(-1); // donc  son orientation est aussi -1 qui represente pas de mur
+    				}
+    					
+			
+			 
+                plateau.setNbreCase0(plateau.getNbreCase0() - 1);
+    			plateau.carteAlibi.remove(0); // enlever la carte alibi deja pioche par le detective, car ce personnage ne fait plus parti des suspects 
+    		}
+	
+    	else {/// tour de Mr jack , on peut aussi l'exprimer avec if (Play.getTour()%2 == 0)
     		 System.out.println("Secret - Carte piochee : ");//l indentite sur cette carte reste cache 
     		 plateau.carteAlibi.get(0).identiteDuPersonnage();//pioche une carte de position 0 parmis les cartes alibi restantes 
     		 plateau.mrJack.setNbSabliers(plateau.mrJack.getNbSabliers() + plateau.carteAlibi.get(0).getNbSablier());//to set le nbre de sablier , en le recevant de la carte alibi pioche et l add a nbre de sablier deja existant pour mrjack
-    		 plateau.carteAlibi.remove(0);//enlever la carte piochee des cartes alibi 
-	}
-    	
-    	
+    		 plateau.carteAlibi.remove(0);}//enlever la carte piochee des cartes alibi 
+    	}
+    	}
+     	
     		
     	///Jeton 2 avec 2 faces	( Toby , watson)
     	
@@ -306,5 +310,6 @@ public class Jeton {
 
 	
     }
-	
     }
+    }
+   
