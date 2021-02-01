@@ -2,8 +2,7 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import mrjack.JetonAction;
-import mrjack.Plateau;
+
 
 public class MainMrjack {
 	private static Scanner scanner = new Scanner(System.in);
@@ -28,7 +27,7 @@ public class MainMrjack {
 		
 		
 		
-		///add
+		
 		for (int nbTour = 1 ; nbTour <= 8 ; nbTour++) {
 			jetons.add(jeton1);
 			jetons.add(jeton2);
@@ -65,10 +64,6 @@ public class MainMrjack {
 			
 			jetons.remove(jetons.get(nb));
 			
-			if (numeroJoueur==0 ) 
-				numeroJoueur=1;
-			else 
-				numeroJoueur=0;
 			
 			System.out.println("C'est au tour de " + players.get(numeroJoueur)
 					+ ", voici les jetons actions :");
@@ -87,6 +82,12 @@ public class MainMrjack {
 			}
 			jetons.get(nb).actionjeton(plateau);
 			jetons.remove(jetons.get(nb));
+			
+
+			if (numeroJoueur==0 ) 
+				numeroJoueur=1;
+			else 
+				numeroJoueur=0;
 
 			System.out.println("C'est au tour de " +  players.get(numeroJoueur)
                                         + ", voici les jetons actions :");
