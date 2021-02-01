@@ -1,28 +1,26 @@
 public  class Player {
     
-    private static String name;
-    private String role;
+    private  String name;
+   
 
-    public Player(String name, String role) {
-        Player.name = name;
-        this.role = role;
+    public Player(String name) {
+        this.name = name;
+        
     }
 
-    public static String getName() {
+    public  String getName() {
         return name;
     }
               
     public void setName(String name) {
-        Player.name = name;
+        this.name = name;
     }
 
-    public String getRole() {
-        return role;
-    }
+	@Override
+	public String toString() {
+		return name ;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-    
+   
    
 }
