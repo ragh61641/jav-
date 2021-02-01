@@ -38,7 +38,7 @@ public class Jeton {
 	        List<String> listNames = new ArrayList<>();
 	        listNames.add(pile);
 	        listNames.add(face);
-	        Collections.shuffle(listNames);
+	        
 	        this.pile = listNames.get(0);
 	        this.face = listNames.get(1);
 	    }
